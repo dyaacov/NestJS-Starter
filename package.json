@@ -1,0 +1,38 @@
+{
+  "name": "dev",
+  "version": "1.0.0",
+  "description": "A starter to easily start and maintain a NestJs+React project",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo no tests yet",
+    "module": "node scripts/spawn.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dyaacov/NestJS-React-Starter.git"
+  },
+  "keywords": [
+    "NestJS",
+    "React"
+  ],
+  "author": "Dekel Yaacov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dyaacov/NestJS-React-Starter/issues"
+  },
+  "homepage": "https://github.com/dyaacov/NestJS-React-Starter#readme",
+  "dependencies": {
+    "@nestjs/common": "^5.0.1",
+    "@nestjs/core": "^5.0.1",
+    "body-parser": "^1.18.3",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^6.2.1",
+    "typescript": "^2.9.2"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/node": "^10.5.1",
+    "ts-node": "^7.0.0"
+  }
+}
