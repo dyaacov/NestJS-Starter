@@ -6,9 +6,9 @@ const CompNameLower = name
 const CompName = name[ 0 ].toUpperCase() + name.slice(1)
 const dir = `${process.cwd()}/src/${name}`
 
-const moduleFile = `import { Module } from '@nestjs/common';
-import { ${CompName}Controller } from './${CompNameLower}.controller';
-import { ${CompName}Service } from './${CompNameLower}.service';
+const moduleFile = `import { Module } from '@nestjs/common'
+import { ${CompName}Controller } from './${CompNameLower}.controller'
+import { ${CompName}Service } from './${CompNameLower}.service'
 
 @Module({
   imports: [],
@@ -19,31 +19,68 @@ export class ${CompName}Module {}
 `
 
 const controllerFile = `
-import { Get, Controller } from '@nestjs/common';
-import { ${CompName}Service } from './${CompNameLower}.service';
+import { Get, Post, Delete, Put, Body, Param, Req, Controller } from '@nestjs/common'
+import { ${CompName}Service } from './${CompNameLower}.service'
 
-@Controller()
+@Controller('${CompNameLower}')
 export class ${CompName}Controller {
   constructor(private readonly ${CompNameLower}Service: ${CompName}Service) {}
 
+  @Post()
+  async create(@Body() entity, @Req() request) {
+    return await this.${CompNameLower}Service.create(entity)
+  }
+
   @Get()
-  hello(): string {
-    return this.${CompNameLower}Service.hello();
+  async findAll(@Req() request) {
+    return await this.${CompNameLower}Service.findAll()
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id, @Req() request) {
+    return await this.${CompNameLower}Service.findOne(id)
+  }
+
+  @Put(':id')
+  async update(@Param('id') id, @Body() entity, @Req() request) {
+    return await this.${CompNameLower}Service.update(id, entity)
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id, @Req() request) {
+    return await this.${CompNameLower}Service.remove(id)
   }
 }
 `
 
 const serviceFile = `
-import { Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class ${CompName}Service {
-  hello(): string {
-    return 'Hello World!';
+  
+  create(entity) {
+    return entity
+  }
+
+  findAll() {
+    return []
+  }
+
+  findOne(id) {
+    return {}
+  }
+
+  update(id, entity) {
+    return entity
+  }
+
+  remove(id) {
+    return {}
   }
 }`
 
 Fs.mkdirSync(dir)
-Fs.writeFileSync(`${dir}/${CompName}.service.ts`, serviceFile)
-Fs.writeFileSync(`${dir}/${CompName}.controller.ts`, controllerFile)
-Fs.writeFileSync(`${dir}/${CompName}.module.ts`, moduleFile)
+Fs.writeFileSync(`${dir}/${CompNameLower}.service.ts`, serviceFile)
+Fs.writeFileSync(`${dir}/${CompNameLower}.controller.ts`, controllerFile)
+Fs.writeFileSync(`${dir}/${CompNameLower}.module.ts`, moduleFile)
