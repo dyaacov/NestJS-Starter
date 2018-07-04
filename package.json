@@ -4,9 +4,11 @@
   "description": "A starter to easily start and maintain a NestJs+React project",
   "main": "index.ts",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dist/server",
+    "watch": "webpack --config webpack.config.js",
     "test": "echo no tests yet",
-    "module": "node scripts/spawn.js"
+    "module": "node scripts/spawn.js",
+    "build": "rimraf dist && tsc"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,10 @@
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/node": "^10.5.1",
-    "ts-node": "^7.0.0"
+    "ts-loader": "^4.4.2",
+    "ts-node": "^7.0.0",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-node-externals": "^1.7.2"
   }
 }
