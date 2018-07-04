@@ -8,8 +8,9 @@ declare const module: any
 async function bootstrap() {
     const app = await NestFactory.create(ApplicationModule)
     app.use(bodyParser.json())
-    app.useGlobalGuards(new AuthGuard(null))
-    const port = 3000
+    const authGuard = app.select(ApplicationModule).get(AuthGuard)
+    app.useGlobalGuards(authGuard)
+    const port = 8080
     console.log(`### Server listening on port ${port} ###`)
     await app.listen(port)
 

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server",
     "watch": "webpack --config webpack.config.js",
-    "test": "echo no tests yet",
+    "test": "jest --config=jest.json",
     "module": "node scripts/spawn.js",
     "build": "rimraf dist && tsc"
   },
@@ -15,8 +15,7 @@
     "url": "git+https://github.com/dyaacov/NestJS-React-Starter.git"
   },
   "keywords": [
-    "NestJS",
-    "React"
+    "NestJS"
   ],
   "author": "Dekel Yaacov",
   "license": "MIT",
@@ -28,13 +27,19 @@
     "@nestjs/common": "^5.0.1",
     "@nestjs/core": "^5.0.1",
     "body-parser": "^1.18.3",
+    "jsonwebtoken": "^8.3.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.1",
     "typescript": "^2.9.2"
   },
   "devDependencies": {
+    "@nestjs/testing": "^5.0.1",
     "@types/body-parser": "^1.17.0",
+    "@types/jest": "^23.1.4",
     "@types/node": "^10.5.1",
+    "jest": "^23.2.0",
+    "nyc": "^12.0.2",
+    "ts-jest": "^23.0.0",
     "ts-loader": "^4.4.2",
     "ts-node": "^7.0.0",
     "webpack": "^4.14.0",

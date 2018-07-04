@@ -11,28 +11,4 @@ export class AuthController {
     return await this.authService.auth(entity)
   }
 
-  @Post()
-  async create(@Body() entity, @Req() request) {
-    return await this.authService.create(entity)
-  }
-
-  @Get()
-  async findAll(@Req() request) {
-    return await this.authService.findAll()
-  }
-
-  @Get(':id')
-  async findOne(@Param('id') id, @Req() request) {
-    return await this.authService.findOne(id)
-  }
-
-  @Put(':id')
-  async update(@Param('id') id, @Body() entity, @Req() request) {
-    return await this.authService.update(id, entity)
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id, @Req() request) {
-    return await this.authService.remove(id)
-  }
 }
