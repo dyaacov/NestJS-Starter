@@ -2,9 +2,8 @@
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
-export class NotificationsService {
-
-  sendSMS(to, body) {
+export class SMSService {
+  send(to, body) {
     if (!to) {
       console.error('no to supplied')
       throw new Error('No \'to\' supplied')
@@ -19,10 +18,9 @@ export class NotificationsService {
       body,
       from: 'smsConfig.phoneNumber',
     }
+    console.log('sms sent!')
     //return twilioClient.messages.create(smsData)
   }
 
-  sendEmail(from, to, subject, html) {
-    return []
-  }
+
 }

@@ -1,20 +1,22 @@
 
 import { Get, Post, Delete, Put, Body, Param, Req, Controller } from '@nestjs/common'
-import { NotificationsService } from './notifications.service'
+import { SMSService } from './sms.service'
+import { EmailService } from './email.service'
 
 @Controller('api/v1/notifications')
 export class NotificationsController {
-  constructor(private readonly notificationsService: NotificationsService) { }
+  constructor(private readonly emailService: EmailService,
+    private readonly smsService: SMSService) { }
 
   @Post('/email')
   async email(@Body() entity, @Req() request) {
     const { to, subject, html } = entity
-    return await this.notificationsService.sendEmail('from', to, subject, html)
+    return await this.emailService.send('from', to, subject, html)
   }
 
   @Post('/sms')
   async sms(@Body() entity, @Req() request) {
     const { to, body } = entity
-    return await this.notificationsService.sendSMS(to, body)
+    return await this.smsService.send(to, body)
   }
 }
