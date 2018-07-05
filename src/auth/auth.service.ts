@@ -9,7 +9,7 @@ export class AuthService {
 
   constructor(private readonly usersService: UsersService) { }
 
-  verify(token) {
+  async verify(token) {
     console.log('verifing token', token)
     if (!token) {
       throw new UnauthorizedException('Invalid token provided.')
@@ -21,16 +21,17 @@ export class AuthService {
         throw new UnauthorizedException('Invalid token provided.')
       }
   
-      console.log('done')
+      console.log('user', decoded)
       return Promise.resolve(decoded)
     })
   }
   
-  auth(entity) {
-    const user = this.usersService.auth(entity)
+  async auth(username:string, password:string) {
+    const user = await this.usersService.auth(username, password)
     if (!user) {
       throw new UnauthorizedException()
     }
+    console.log(user)
     return jwt.sign(user, secretKey)
   }
 }

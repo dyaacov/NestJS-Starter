@@ -59,23 +59,23 @@ import { Injectable } from '@nestjs/common'
 @Injectable()
 export class ${CompName}Service {
   
-  create(entity) {
+  async create(entity) {
     return entity
   }
 
-  findAll() {
+  async findAll() {
     return []
   }
 
-  findOne(id) {
+  async findOne(id) {
     return {}
   }
 
-  update(id, entity) {
+  async update(id, entity) {
     return entity
   }
 
-  remove(id) {
+  async remove(id) {
     return {}
   }
 }`

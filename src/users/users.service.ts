@@ -4,26 +4,39 @@ import { Injectable } from '@nestjs/common'
 @Injectable()
 export class UsersService {
 
-  auth(entity) {
+  async auth(username:string, email:string) {
     return { username: 'admin', email: 'admin@gmail.com' } //TODO from DB
   }
-  create(entity) {
+  async create(entity) {
     return entity
   }
 
-  findAll() {
+  async findAll() {
     return []
   }
 
-  findOne(id) {
-    return {}
+  async findOne(id) {
+    return { username: 'admin', email: 'admin@gmail.com' } //TODO from DB
   }
 
-  update(id, entity) {
+  async update(id, entity) {
     return entity
   }
 
-  remove(id) {
+  async remove(id) {
     return {}
   }
+
+  async activate(email, token, newPassword) {
+    //1. validate link exists
+    //2. update user with new password
+  }
+
+  async resetPassword() {
+  }
+
+  async changePassword(id:string, oldPassword:string, newPassword:string) {
+  }
+
+
 }

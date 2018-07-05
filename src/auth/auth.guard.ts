@@ -1,6 +1,8 @@
 import { Injectable, CanActivate, ExecutionContext, Inject } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { resolve } from 'path';
+import { rejects } from 'assert';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -13,8 +15,13 @@ export class AuthGuard implements CanActivate {
         const token = request.get('X-ACCESS-TOKEN')
         console.log(request.url)
         if (request.url.indexOf('/api') == 0) {
-            return this.authService.verify(token)
+            return new Promise(async resolve => {
+                const user = await this.authService.verify(token)
+                request.user = user
+                return resolve(user)
+            })
+        } else {
+            return true 
         }
-        return true
     }
 }
