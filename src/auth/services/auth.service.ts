@@ -1,7 +1,7 @@
 
 import * as jwt from 'jsonwebtoken';
 import { Injectable, UnauthorizedException } from '@nestjs/common'
-import { UsersService } from '../users/users.service';
+import { UsersService } from '../../users/services/users.service';
 const secretKey = 'secretKey'
 
 @Injectable()
@@ -20,14 +20,14 @@ export class AuthService {
         console.log('error in verifying the token', err)
         throw new UnauthorizedException('Invalid token provided.')
       }
-  
+
       console.log('user', decoded)
       return Promise.resolve(decoded)
     })
   }
-  
-  async auth(username:string, password:string) {
-    const user = await this.usersService.auth(username, password)
+
+  async auth(username: string, password: string) {
+    const user = undefined//await this.usersService.auth(username, password)
     if (!user) {
       throw new UnauthorizedException()
     }
