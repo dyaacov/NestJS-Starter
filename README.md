@@ -19,8 +19,8 @@ npm run start:dev
 ```
 
 ## Features
-- Generate a new [module]('#module')
-- CRUD operrations support (mongo) + pagination (findAll) 
+- Generate a new, fully configured module
+- CRUD operations support (mongo) + pagination 
 - Mongo support
 - Authentication (by default, all routes starts with /api are proteced by AuthGuard) (wip)
 - Users management (CRUD, change password, forgot password, activate account, login) (wip)
@@ -34,14 +34,17 @@ npm run module audits
 ```
 will generate the following structure:<br/>
 -audits<br/>
+--<i>index.ts</i><br/>
 --controllers<br/>
----audits.controller.ts<br/>
+---<i>audits.controller.ts</i><br/>
 --models<br/>
----audits.model.ts<br/>
+---<i>audits.model.ts</i><br/>
 --modules<br/>
----audits.module.ts<br/>
+---<i>audits.module.ts</i><br/>
 --services<br/>
----audits.service.ts<br/>
+---<i>audits.service.ts</i><br/>
+
+** add your newly created modules to <i>app.module.ts</i>
 
 ## Stay in touch
 
@@ -52,7 +55,7 @@ will generate the following structure:<br/>
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+NestJS-Starter is [MIT licensed](LICENSE).
 
 
 ## Still in progress
