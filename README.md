@@ -1,7 +1,7 @@
 # NestJS-Starter
 
 ## Description
-A fully functional, already implemented node.js server based on the exellent <a href="https://docs.nestjs.com/" target="_blank">NestJS framework</a>
+A fully functional, already implemented node.js server based on the great <a href="https://docs.nestjs.com/" target="_blank">NestJS framework</a>
 
 ## Getting started
 - Clone the repository
