@@ -1,8 +1,8 @@
 
 import { Post, Body, Req, Controller } from '@nestjs/common'
-import { EmailService, SMSService } from '../'
+import { EmailService, SMSService } from '..'
 
-@Controller('api/v1/notifications')
+@Controller('api/v1/notification')
 export class NotificationsController {
   constructor(private readonly emailService: EmailService) { }
 

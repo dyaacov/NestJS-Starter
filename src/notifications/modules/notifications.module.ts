@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { NotificationsController, SMSService, EmailService, EmailClient, SMSClient } from '../'
+import { NotificationsController, SMSService, EmailService, EmailClient, SMSClient } from '..'
 
 @Module({
   imports: [],

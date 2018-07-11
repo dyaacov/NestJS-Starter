@@ -27,11 +27,11 @@ export class AuthService {
   }
 
   async auth(username: string, password: string) {
-    const user = undefined//await this.usersService.auth(username, password)
+    const user = await this.usersService.auth(username, password)
     if (!user) {
       throw new UnauthorizedException()
     }
     console.log(user)
-    return jwt.sign(user, secretKey)
+    return jwt.sign(JSON.stringify(user), secretKey)
   }
 }

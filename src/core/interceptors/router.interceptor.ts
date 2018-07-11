@@ -13,6 +13,6 @@ export class RouterInterceptor<T>
         context: ExecutionContext,
         call$: Observable<T>,
     ): Observable<Response<T>> {
-        return call$.pipe(map(data => ({ data })));
+        return call$.pipe(map(data => ({ data, "success": true })));
     }
 }

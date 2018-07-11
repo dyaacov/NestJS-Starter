@@ -3,18 +3,15 @@ import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 
 @Injectable()
-export class UsersService {
-  constructor(@InjectModel('users') private readonly model) { }
-
-  async auth(username: string, password: string) {
-    return await this.findOne({ 'email': username })
-  }
+export class AuditsService {
+  constructor(@InjectModel('audits') private readonly model) { }
 
   async create(entity) {
     return await this.model.create(entity)
   }
 
   async findAll(params = { limit: 10, offset: 1 }) {
+    console.log()
     const limit = params.limit || 10
     const offset = params.offset || 1
     const query = this._buildQuery(params)
@@ -47,8 +44,9 @@ export class UsersService {
   }
 
   _buildQuery(params) {
+    const filter = {}
     //TODO extract relevant parameters for the query based on your business logic
-    return params
+    return filter
   }
 
   _extractUpdateableFields(entity) {
@@ -56,4 +54,5 @@ export class UsersService {
     //for example, do not allow password update, use a dedicated service for change password
     return entity
   }
+
 }
