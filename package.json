@@ -1,11 +1,11 @@
 {
   "name": "dev",
   "version": "1.0.0",
-  "description": "A starter to easily start and maintain a NestJs+React project",
+  "description": "A starter to easily start and maintain a NestJs based server",
   "main": "index.ts",
   "scripts": {
     "start:dev": "nodemon",
-    "start2": "node dist/server",
+    "start": "node dist/server",
     "watch": "webpack --config webpack.config.js",
     "test": "jest --config=jest.json",
     "module": "node scripts/spawn.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dyaacov/NestJS-React-Starter.git"
+    "url": "git+https://github.com/dyaacov/NestJS-Starter.git"
   },
   "keywords": [
     "NestJS"
@@ -21,15 +21,18 @@
   "author": "Dekel Yaacov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dyaacov/NestJS-React-Starter/issues"
+    "url": "https://github.com/dyaacov/NestJS-Starter/issues"
   },
-  "homepage": "https://github.com/dyaacov/NestJS-React-Starter#readme",
+  "homepage": "https://github.com/dyaacov/NestJS-Starter#readme",
   "dependencies": {
     "@nestjs/common": "^5.1.0",
     "@nestjs/core": "^5.1.0",
     "@nestjs/mongoose": "^5.0.0",
     "@sendgrid/mail": "^6.3.1",
+    "bcrypt": "^3.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "joi": "^13.4.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.1",
     "reflect-metadata": "^0.1.12",

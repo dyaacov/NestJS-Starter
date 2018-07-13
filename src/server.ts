@@ -15,10 +15,5 @@ async function bootstrap() {
     await app.listen(port)
     console.log(`### Server listening on port ${port} ###`)
 
-    if (module.hot) {
-        module.hot.accept();
-        module.hot.dispose(() => app.close());
-    }
-
 }
 bootstrap()

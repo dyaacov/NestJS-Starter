@@ -1,10 +1,10 @@
 
 import { Get, Post, Delete, Put, Body, Param, Req, Controller } from '@nestjs/common'
-import { AuditsService } from '../'
+import { AuditsService } from '..'
 
 @Controller('api/v1/audit')
 export class AuditsController {
-  constructor(private readonly auditsService: AuditsService) {}
+  constructor(private readonly auditsService: AuditsService) { }
 
   @Post()
   async create(@Body() entity, @Req() request) {

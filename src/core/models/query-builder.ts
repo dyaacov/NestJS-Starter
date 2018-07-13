@@ -1,4 +1,4 @@
-
+//TODO implement
 export class QueryBuilder {
     query: {};
 

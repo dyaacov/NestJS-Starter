@@ -8,7 +8,7 @@ export class NotificationsController {
 
   @Post('/email')
   async email(@Body() entity, @Req() request) {
-    entity.from = 'me'
+    entity.from = 'do-not-reply@gmail.com'
     return await this.emailService.send(entity)
   }
 

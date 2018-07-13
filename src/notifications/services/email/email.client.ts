@@ -5,6 +5,6 @@ client.setApiKey(process.env.SENDGRID_API_KEY)
 @Injectable()
 export class EmailClient {
     async send(data) {
-
+        client.send(data)
     }
 }

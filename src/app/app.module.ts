@@ -8,13 +8,13 @@ import { NotificationsModule } from '../notifications/modules/notifications.modu
 import { AuditsModule } from '../audits/modules/audits.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, NotificationsModule, AuditsModule, MongooseModule.forRoot('mongodb://nestjs:nestjs123@ds129541.mlab.com:29541/nestjs', { useNewUrlParser: true })],
+  imports: [UsersModule, AuthModule, NotificationsModule, AuditsModule, MongooseModule.forRoot(`${process.env.DATABASE_URL}`, { useNewUrlParser: true })],
   providers: [
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
     }
   ],
-  exports: [UsersModule, AuthModule]
+  exports: [AuthModule]
 })
 export class ApplicationModule { }

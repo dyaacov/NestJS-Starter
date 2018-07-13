@@ -1,14 +1,15 @@
 
 import { Get, Post, Delete, Put, Body, Param, Req, Controller } from '@nestjs/common'
-import { UsersService } from '..'
+import { UsersService, ChangePasswordValidator } from '..'
+import { JoiValidationPipe } from '../../core';
 
 @Controller('api/v1/user')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) { console.log('#UsersController#') }
 
   @Post()
-  async create(@Body() entity, @Req() request) {
-    return await this.usersService.create(entity)
+  async create(@Body() body, @Req() request) {
+    return await this.usersService.create(body)
   }
 
   @Get()
@@ -22,12 +23,24 @@ export class UsersController {
   }
 
   @Put(':id')
-  async update(@Param('id') id, @Body() entity, @Req() request) {
-    return await this.usersService.update(id, entity)
+  async update(@Param('id') id, @Body() body, @Req() request) {
+    return await this.usersService.update(id, body)
   }
 
   @Delete(':id')
   async remove(@Param('id') id, @Req() request) {
     return await this.usersService.remove(id)
+  }
+
+  @Post()
+  async forgotPassword(@Body() body, @Req() request) {
+    const { email } = body
+    return await this.usersService.forgotPassword(email)
+  }
+
+  @Put('/password')
+  async changePassword(@Body(new JoiValidationPipe(ChangePasswordValidator)) body, @Req() request) {
+    const { oldPassword, newPassword } = body
+    return await this.usersService.changePassword(request.user.id, oldPassword, newPassword)
   }
 }

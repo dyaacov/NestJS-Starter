@@ -1,10 +1,12 @@
 
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
+import { Utils } from '../../core/utils'
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('users') private readonly model) { }
+
+  constructor(@InjectModel('users') private readonly model) { console.log('#UsersService#') }
 
   async auth(username: string, password: string) {
     return await this.findOne({ 'email': username })
@@ -44,6 +46,19 @@ export class UsersService {
 
   async remove(id) {
     return await this.model.findByIdAndRemove(id)
+  }
+
+  async forgotPassword(email: String) {
+    throw new Error("Method not implemented.");
+  }
+
+  async changePassword(id, oldPassword, newPassword) {
+    const invalidErrorMsg = 'Invalid email or password'
+    const user = await this.findOne(id)
+    if (!user || !Utils.comparePassword(oldPassword, user.hash)) {
+      throw new NotFoundException()
+    }
+    return await this.model.findByIdAndUpdate(id, { password: newPassword }, { new: true })
   }
 
   _buildQuery(params) {

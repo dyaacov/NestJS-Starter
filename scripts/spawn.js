@@ -30,8 +30,8 @@ export class ${CompName}Controller {
   constructor(private readonly ${CompNameLower}Service: ${CompName}Service) {}
 
   @Post()
-  async create(@Body() entity, @Req() request) {
-    return await this.${CompNameLower}Service.create(entity)
+  async create(@Body() body, @Req() request) {
+    return await this.${CompNameLower}Service.create(body)
   }
 
   @Get()
@@ -45,8 +45,8 @@ export class ${CompName}Controller {
   }
 
   @Put(':id')
-  async update(@Param('id') id, @Body() entity, @Req() request) {
-    return await this.${CompNameLower}Service.update(id, entity)
+  async update(@Param('id') id, @Body() body, @Req() request) {
+    return await this.${CompNameLower}Service.update(id, body)
   }
 
   @Delete(':id')
@@ -119,7 +119,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 export const ${CompName}Schema = new Schema({
   name: String
-})
+}, { timestamps: true })
 `
 
 const indexFile = `
