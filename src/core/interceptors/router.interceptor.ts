@@ -1,4 +1,4 @@
-import { Injectable, NestInterceptor, ExecutionContext } from '@nestjs/common';
+import { CallHandler, Injectable, NestInterceptor, ExecutionContext } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -7,12 +7,12 @@ export interface Response<T> {
 }
 
 @Injectable()
-export class RouterInterceptor<T>
-    implements NestInterceptor<T, Response<T>> {
+export class RouterInterceptor
+    implements NestInterceptor {
     intercept(
         context: ExecutionContext,
-        call$: Observable<T>,
-    ): Observable<Response<T>> {
-        return call$.pipe(map(data => ({ data, "success": true })));
+        next: CallHandler,
+    ): Observable<any> {
+        return next.handle().pipe(map(data => ({ data, "success": true })));
     }
 }

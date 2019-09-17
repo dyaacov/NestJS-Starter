@@ -15,7 +15,7 @@ npm install
 ```
 - Start the server
 ```
-npm run start:dev
+DATABASE_URL=mongodb://localhost/demo npm run start:dev
 ```
 
 ## Features
