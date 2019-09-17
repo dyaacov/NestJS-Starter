@@ -9,7 +9,7 @@
     "watch": "webpack --config webpack.config.js",
     "test": "jest --config=jest.json",
     "module": "node scripts/spawn.js",
-    "build": "rimraf build && tsc --pretty"
+    "build": "rimraf dist && tsc --pretty"
   },
   "repository": {
     "type": "git",

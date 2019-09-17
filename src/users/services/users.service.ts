@@ -9,7 +9,7 @@ export class UsersService {
   constructor(@InjectModel('users') private readonly model) { console.log('#UsersService#') }
 
   async auth(username: string, password: string) {
-    return await this.findOne({ 'email': username })
+    return await this.find({ email: username })
   }
 
   async create(entity) {
@@ -30,6 +30,10 @@ export class UsersService {
       totalItems: count,
       totalPages: Math.max(1, Math.ceil(count / limit))
     }
+  }
+
+  async find(query) {
+    return await this.model.findOne(query)
   }
 
   async findOne(id) {
