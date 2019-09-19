@@ -9,7 +9,8 @@ export class UsersService {
   constructor(@InjectModel('users') private readonly model) { console.log('#UsersService#') }
 
   async auth(username: string, password: string) {
-    return await this.find({ email: username })
+    const hashedNewPassword = Utils.hashPassword(password)
+    return await this.find({ email: username, password: hashedNewPassword })
   }
 
   async create(entity) {
@@ -62,7 +63,8 @@ export class UsersService {
     if (!user || !Utils.comparePassword(oldPassword, user.hash)) {
       throw new NotFoundException()
     }
-    return await this.model.findByIdAndUpdate(id, { password: newPassword }, { new: true })
+    const hashedNewPassword = Utils.hashPassword(newPassword)
+    return await this.model.findByIdAndUpdate(id, { password: hashedNewPassword }, { new: true })
   }
 
   _buildQuery(params) {
