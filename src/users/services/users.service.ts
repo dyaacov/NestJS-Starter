@@ -9,8 +9,12 @@ export class UsersService {
   constructor(@InjectModel('users') private readonly model) { console.log('#UsersService#') }
 
   async auth(username: string, password: string) {
-    const hashedNewPassword = Utils.hashPassword(password)
-    return await this.find({ email: username, password: hashedNewPassword })
+    const hashedPassword = Utils.hashPassword(password)
+    const user = await this.find({ username })
+    if (user) {
+      return Utils.comparePassword(password, user.hash)
+    }
+    throw new NotFoundException('User Not Found')
   }
 
   async create(entity) {
@@ -53,18 +57,18 @@ export class UsersService {
     return await this.model.findByIdAndRemove(id)
   }
 
-  async forgotPassword(email: String) {
+  async forgotPassword(username: String) {
     throw new Error("Method not implemented.");
   }
 
   async changePassword(id, oldPassword, newPassword) {
-    const invalidErrorMsg = 'Invalid email or password'
+    const invalidErrorMsg = 'Invalid username or password'
     const user = await this.findOne(id)
     if (!user || !Utils.comparePassword(oldPassword, user.hash)) {
       throw new NotFoundException()
     }
     const hashedNewPassword = Utils.hashPassword(newPassword)
-    return await this.model.findByIdAndUpdate(id, { password: hashedNewPassword }, { new: true })
+    return await this.model.findByIdAndUpdate(id, { hash: hashedNewPassword }, { new: true })
   }
 
   _buildQuery(params) {

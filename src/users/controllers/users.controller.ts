@@ -34,8 +34,8 @@ export class UsersController {
 
   @Post()
   async forgotPassword(@Body() body, @Req() request) {
-    const { email } = body
-    return await this.usersService.forgotPassword(email)
+    const { username } = body
+    return await this.usersService.forgotPassword(username)
   }
 
   @Put('/password')
