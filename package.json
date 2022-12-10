@@ -28,7 +28,7 @@
     "@nestjs/common": "^6.7.1",
     "@nestjs/core": "^6.7.1",
     "@nestjs/mongoose": "^6.1.2",
-    "@nestjs/platform-express": "^6.7.1",
+    "@nestjs/platform-express": "^9.2.1",
     "@sendgrid/mail": "^6.4.0",
     "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
